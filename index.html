@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>녹차빌런</title>
+  <style>
+
+
+  body {
+    margin: 0;
+    height: 100vh; /* 뷰포트 높이 100% */
+    display: flex;
+    justify-content: center; /* 가로 가운데 */
+    align-items: center;     /* 세로 가운데 */
+    background:#ffd7a2;
+  }
+
+  .box{
+    cursor: pointer;
+    width: 80lvmin; aspect-ratio:1;             /* 사각형 */
+    background:#ff92d5;
+    display:flex; align-items:center; justify-content:center;
+    outline: 7px solid #000000;
+  }
+
+  .circle{
+    
+    
+    width:90%;              /* 부모의 절반 너비 */
+    aspect-ratio:1;         /* 정원(가로=세로) */
+    border-radius:50%;
+    background:#9fff82;
+    display:flex; align-items:center; justify-content:center;
+    outline: 7px solid #000000;
+    cursor: pointer;
+  }
+
+  .box2{
+    cursor: pointer;
+    width: 60%; aspect-ratio:1;             /* 사각형 */
+    background:#9bcfff;
+    display:flex; align-items:center; justify-content:center;
+    outline: 7px solid #000000;
+  }
+
+  .circle2{
+    cursor: pointer;
+    width:70%;              /* 부모의 절반 너비 */
+    aspect-ratio:1;         /* 정원(가로=세로) */
+    border-radius:50%;
+    background:#ffc355;
+    display:flex; align-items:center; justify-content:center;
+    outline: 7px solid #000000;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="box" onclick="location.href='https://www.google.com'">
+    <div class="circle" onclick="event.stopPropagation(); location.href='https://www.youtube.com'">
+      <div class="box2" onclick="event.stopPropagation(); location.href='https://www.naver.com'">
+        <div class="circle2" onclick="event.stopPropagation(); location.href='https://www.instagram.com'"></div>
+      </div>
+    </div>
+  </div>
+</body>
