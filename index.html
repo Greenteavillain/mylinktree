@@ -4,79 +4,58 @@
   <meta charset="UTF-8">
   <title>녹차빌런</title>
   <style>
-
   body {
     margin: 0;
-    height: 100vh; /* 뷰포트 높이 100% */
-    display: flex;
-    justify-content: center; /* 가로 가운데 */
-    align-items: center;     /* 세로 가운데 */
+    height: 100vh;
+    display: flex; justify-content: center; align-items: center;
     background:#ffffff;
+    cursor: none;
   }
 
   .box{
-    cursor: pointer;
-    width: 80lvmin; aspect-ratio:1;             /* 사각형 */
-    background:#ff92d5;
+    width: 80lvmin; aspect-ratio:1;
+    background:#73ad6b;
     display:flex; align-items:center; justify-content:center;
     outline: 7px solid #000000;
   }
-
   .circle{
-    
-    
-    width:90%;              /* 부모의 절반 너비 */
-    aspect-ratio:1;         /* 정원(가로=세로) */
-    border-radius:50%;
-    background:#9fff82;
+    width:90%; aspect-ratio:1; border-radius:50%;
+    background:#d4d4d4;
     display:flex; align-items:center; justify-content:center;
     outline: 7px solid #000000;
-    cursor: pointer;
   }
-
   .box2{
-    cursor: pointer;
-    width: 60%; aspect-ratio:1;             /* 사각형 */
-    background:#9bcfff;
+  
+    width: 60%; aspect-ratio:1; background:#73ad6b;
     display:flex; align-items:center; justify-content:center;
     outline: 7px solid #000000;
   }
-
   .circle2{
-    cursor: pointer;
-    width:70%;              /* 부모의 절반 너비 */
-    aspect-ratio:1;         /* 정원(가로=세로) */
-    border-radius:50%;
-    background:#ffc355;
+   
+    width:70%; aspect-ratio:1; border-radius:50%;
+    background:#d4d4d4;
     display:flex; align-items:center; justify-content:center;
     outline: 7px solid #000000;
   }
 
   .cursor-circle {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 40px;
-      height: 40px;
-      border: 10px solid #73ad6b;
-      border-radius: 50%;
-      pointer-events: none; /* 클릭 방해 X */
-      transform: translate(-50%, -50%);
-      }
-
-
+    position: fixed; top: 0; left: 0;
+    width: 15px; height: 15px;
+    border: 4px solid #000000; border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s linear, background-color 0.2s, border-color 0.2s;
+    z-index: 9999;
+  }
+  .cursor-circle.active {
+    background-color: #000000;
+    border-color: #000000;
+  }
   </style>
 </head>
 
 <body>
-  <script>
-    const circle = document.querySelector('.cursor-circle');
-
-    document.addEventListener('mousemove', e => {
-      circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
-  </script>
-
+  <div class="cursor-circle"></div>
 
   <div class="box" onclick="location.href='https://www.google.com'">
     <div class="circle" onclick="event.stopPropagation(); location.href='https://www.youtube.com'">
@@ -86,5 +65,22 @@
     </div>
   </div>
 
+  <script>
+    const cursor = document.querySelector('.cursor-circle');
+    const clickableSelector = 'a, button, [onclick]';
 
+    document.addEventListener('mousemove', (e) => {
+      // 커서 이동
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+
+      // 현재 포인터 아래의 요소가 클릭 가능한지 판별
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if (el && el.closest(clickableSelector)) {
+        cursor.classList.add('active');
+      } else {
+        cursor.classList.remove('active');
+      }
+    });
+  </script>
 </body>
+</html>
