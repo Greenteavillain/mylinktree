@@ -51,10 +51,33 @@
     display:flex; align-items:center; justify-content:center;
     outline: 7px solid #000000;
   }
+
+  .cursor-circle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      border: 2px solid #73ad6b;
+      border-radius: 50%;
+      pointer-events: none; /* 클릭 방해 X */
+      transform: translate(-50%, -50%);
+      }
+
+
   </style>
 </head>
 
 <body>
+  <script>
+    const circle = document.querySelector('.cursor-circle');
+
+    document.addEventListener('mousemove', e => {
+      circle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+  </script>
+
+
   <div class="box" onclick="location.href='https://www.google.com'">
     <div class="circle" onclick="event.stopPropagation(); location.href='https://www.youtube.com'">
       <div class="box2" onclick="event.stopPropagation(); location.href='https://www.naver.com'">
@@ -62,4 +85,6 @@
       </div>
     </div>
   </div>
+
+
 </body>
